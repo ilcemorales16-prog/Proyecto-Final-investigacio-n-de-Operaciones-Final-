@@ -24,7 +24,7 @@ st.sidebar.markdown("""
     • Ilce Daniela Morales<br>
     • Jeisell Daniela Ramírez<br>
     • Karen Yuliana Torres<br>
-    • Josué Armando Matul 
+    • Josué Armando Matul
 </div>
 """, unsafe_allow_html=True)
 st.sidebar.markdown("---")
@@ -40,9 +40,9 @@ if modulo == "Método Gráfico":
 
     col1, col2 = st.columns(2)
     with col1:
-        c1 = st.number_input("Coeficiente de $X_1$ en Z:", value=3.0)
+        c1 = st.number_input("Coeficiente de $X_1$ en Z:", value=0.0)
     with col2:
-        c2 = st.number_input("Coeficiente de $X_2$ en Z:", value=5.0)
+        c2 = st.number_input("Coeficiente de $X_2$ en Z:", value=0.0)
 
     n = st.number_input("Cantidad de restricciones:", min_value=1, max_value=10, value=2, step=1)
 
@@ -51,13 +51,13 @@ if modulo == "Método Gráfico":
     for i in range(int(n)):
         col_a, col_b, col_signo, col_d = st.columns([2, 2, 2, 2])
         with col_a:
-            a = st.number_input(f"Coeff $X_1$ (R{i + 1})", value=1.0, key=f"g_a_{i}")
+            a = st.number_input(f"Coeff $X_1$ (R{i + 1})", value=0.0, key=f"g_a_{i}")
         with col_b:
-            b = st.number_input(f"Coeff $X_2$ (R{i + 1})", value=1.0, key=f"g_b_{i}")
+            b = st.number_input(f"Coeff $X_2$ (R{i + 1})", value=0.0, key=f"g_b_{i}")
         with col_signo:
             signo = st.selectbox(f"Signo (R{i + 1})", ["<=", ">=", "="], key=f"g_s_{i}")
         with col_d:
-            d = st.number_input(f"Resultado (R{i + 1})", value=4.0, key=f"g_d_{i}")
+            d = st.number_input(f"Resultado (R{i + 1})", value=0.0, key=f"g_d_{i}")
         restricciones.append([a, b, signo, d])
 
     if st.button("Resolver Método Gráfico"):
@@ -183,7 +183,7 @@ elif modulo == "Método Simplex":
     c_obj = []
     for j in range(int(num_vars)):
         with cols_obj[j]:
-            val = st.number_input(f"$X_{j + 1}$", value=3.0 if j == 0 else 5.0, key=f"s_obj_{j}")
+            val = st.number_input(f"$X_{j + 1}$", value=0.0, key=f"s_obj_{j}")
             c_obj.append(val)
 
     st.subheader("Restricciones:")
@@ -195,10 +195,10 @@ elif modulo == "Método Simplex":
         fila = []
         for j in range(int(num_vars)):
             with cols_r[j]:
-                v = st.number_input(f"Coeff $X_{j + 1}$", value=1.0, key=f"s_r_{i}_{j}")
+                v = st.number_input(f"Coeff $X_{j + 1}$", value=0.0, key=f"s_r_{i}_{j}")
                 fila.append(v)
         with cols_r[-1]:
-            res = st.number_input("Resultado ($\leq$)", value=4.0, key=f"s_rhs_{i}")
+            res = st.number_input("Resultado ($\leq$)", value=0.0, key=f"s_rhs_{i}")
             rhs.append(res)
         matriz_rest.append(fila)
 
@@ -310,8 +310,7 @@ elif modulo == "Métodos de Transporte":
         fila_c = []
         for j in range(int(n_dest)):
             with cols_c[j]:
-                v = st.number_input(f"O{i + 1} $\\rightarrow$ D{j + 1}", value=float((i + 1) * (j + 1) + 2),
-                                    key=f"t_c_{i}_{j}")
+                v = st.number_input(f"O{i + 1} $\\rightarrow$ D{j + 1}", value=0.0, key=f"t_c_{i}_{j}")
                 fila_c.append(v)
         costos.append(fila_c)
 
@@ -320,14 +319,14 @@ elif modulo == "Métodos de Transporte":
         st.subheader("Oferta por Origen:")
         oferta = []
         for i in range(int(n_orig)):
-            val_o = st.number_input(f"Oferta O{i + 1}:", value=100.0, key=f"t_o_{i}")
+            val_o = st.number_input(f"Oferta O{i + 1}:", value=0.0, key=f"t_o_{i}")
             oferta.append(val_o)
 
     with col_demanda:
         st.subheader("Demanda por Destino:")
         demanda = []
         for j in range(int(n_dest)):
-            val_d = st.number_input(f"Demanda D{j + 1}:", value=75.0, key=f"t_d_{j}")
+            val_d = st.number_input(f"Demanda D{j + 1}:", value=0.0, key=f"t_d_{j}")
             demanda.append(val_d)
 
     if st.button("Resolver Transporte"):
@@ -461,7 +460,7 @@ elif modulo == "Método de Asignación":
         cols_input = st.columns(int(n_agentes))
         for j in range(int(n_agentes)):
             with cols_input[j]:
-                val = st.number_input(f"A{i + 1}T{j + 1}", value=float((i + 1) * (j + 2)), key=f"asig_{tipo_asignacion}_{i}_{j}")
+                val = st.number_input(f"A{i + 1}T{j + 1}", value=0.0, key=f"asig_{tipo_asignacion}_{i}_{j}")
                 fila.append(val)
         matriz_costos.append(fila)
 
